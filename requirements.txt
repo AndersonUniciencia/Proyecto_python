@@ -1,0 +1,8 @@
+pymysql
+python-multipart
+SQLAlchemy
+Jinja2
+uvicorn
+fastapi
+python-dateutil
+python-jose[cryptography]
