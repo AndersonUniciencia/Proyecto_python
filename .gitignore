@@ -3,5 +3,3 @@ sql_app.db
 angular-1.8.2
 .vs
 *__pycache__
-app/negocio/__pycache__/productos.cpython-310.pyc
-app/negocio/__pycache__/usuarios.cpython-310.pyc

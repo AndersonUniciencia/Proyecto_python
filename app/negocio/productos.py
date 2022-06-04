@@ -6,7 +6,7 @@ from jose import JWTError, jwt
 
 #Obtiene los productos
 def getProductos(db: Session):
-    productos = db.query(Productos).all()
+    productos = db.query(Productos).order_by(Productos.ProductName).all()
     return productos
 
 #Obtiene el producto por el id

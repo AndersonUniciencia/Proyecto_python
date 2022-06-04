@@ -1,0 +1,43 @@
+<div>
+    <h1>Productos</h1>
+    <br>
+    <div ng-if="ctr.cargando" class="centarItems">
+        <br>
+            <i class="fas fa-spinner fa-spin  fa-3x"></i>
+    </div>
+    <div ng-if="!cargando && ctr.productos.length <= 0" class="centarItems">
+        <span>No se encontraron resultados</span>
+    </div>
+    <div >
+        <label>Resultados: <span class="badge bg-secondary">{{ctr.productos.length}}</span></label>
+        <br>
+        <div class="row absolute-size table-responsive" >
+        
+            <table class="table table-striped table-sm" >
+                <thead>
+                    <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Cantidad por unidad</th>
+                    <th scope="col">Unidad precio</th>
+                    <th scope="col" >Cantidad almacenada</th>
+                    <th scope="col">Unidades en order</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="producto in ctr.productos">
+                        <td><i class="fa fa-folder" aria-hidden="true"></i></td>
+                        <td>{{producto.ProductName}}</td>
+                        <td>{{producto.CategoryID}}</td>
+                        <td>{{producto.QuantityPerUnit}}</td>
+                        <td>{{producto.UnitPrice | currency}}</td>
+                        <td>{{producto.UnitsInStock}}</td>
+                        <td>{{producto.UnitsOnOrder}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+</div>

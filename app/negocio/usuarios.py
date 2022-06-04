@@ -1,9 +1,10 @@
 from datetime import datetime, timedelta
+from fastapi import HTTPException
 from pydantic import BaseModel
 from sqlalchemy import or_
 from sqlalchemy.orm import Session
 from app.config import settings
-from app.data.modelos import Usuarios
+from app.data.modelos import Empleados, Usuarios
 from jose import JWTError, jwt
 
 #Utilizado para guardar los datos dentro del token
@@ -17,6 +18,13 @@ def get_usuario(db: Session, documento):
     if usuario == None:
         usuario = db.query(Usuarios).where(Usuarios.email == documento).first()
     
+    return usuario
+
+def get_usuario_completo(db: Session, id_usuario):
+    usuario = db.query(Usuarios, Empleados).join(Empleados).where(Usuarios.id == id_usuario)
+    if usuario == None:
+        raise HTTPException(status_code=404, detail= {"error" : "No se encontró el usuario con el id:" + id_usuario})
+
     return usuario
 
 #Autentifica el usuario con el nombre del usuario o con el correo electronico y su clave
