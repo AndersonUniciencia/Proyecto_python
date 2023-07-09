@@ -8,13 +8,12 @@ from app.config import settings
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from app.data.database import SessionLocal, Base, engine
-from app.data.modelos import  Usuarios, Empleados
-from app.negocio import usuarios, productos, ordenes
+from app.data.modelos import Usuarios, Empleados
+from app.negocio import usuarios, productos
 
 app = FastAPI()
 
 origins = [
-    "http://localhost",
     "http://localhost:8080",
 ]
 
@@ -104,15 +103,10 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = 
     access_token = usuarios.crea_acceso_token(
         data={"sub": usuario.email}, expires_delta=access_token_expires
     )
-    #usuario = usuarios.get_usuario_completo(db, usuario.id);
     #Elimina la clave
     usuario.clave = None
     
     return {"access_token": access_token, "token_type": "bearer", "usuario":  usuario}
-
-@app.get("/api/ordenes")
-async def getOrdenes(request : Request, desde, hasta, db: Session = Depends(get_db), user: Usuarios = Depends(getUsuarioActivado)):
-    return ordenes.get_ordenes(db, user, desde, hasta)
 
 
 @app.get("/api/productos")
