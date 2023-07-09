@@ -1,0 +1,58 @@
+<div class="container">
+  <h1>Productos</h1>
+  <br>
+  <div class="row" >
+    <div class="col-md-6 col-lg-4">
+        <div class="mb-2 row">
+        <label class="col-sm-4 col-form-label">Nombre</label>&nbsp;
+        <div class="col-sm-7">
+            <input type="text" class="form-control" [(ngModel)]="filtros.nombre">
+        </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <button class="btn btn-primary ">Filtrar</button>
+    </div>
+  </div>
+  <br>
+  <div *ngIf="cargando" >
+    <br>
+        <i class="fas fa-spinner fa-spin  fa-3x"></i>
+  </div>
+  <div *ngIf="!cargando">
+    <label>Resultados: <span class="badge bg-secondary">{{productos.length}}</span></label>
+    <br>
+    <div class="row absolute-size table-responsive" >
+
+      <table class="table table-striped table-sm" >
+          <thead>
+              <tr>
+                  <th scope="col"></th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col" >Categoria</th>
+                  <th scope="col" >Valor unitario</th>
+                  <th scope="col">Cantidad</th>
+              </tr>
+          </thead>
+          <!--tbody>
+              <tr v-for="f in facturas" v-bind:key="f.numero">
+                  <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm" @click="mostrarDetalle(f)"><i class="fa-solid fa-folder"></i></button>
+                        <a v-bind:href="f.pdf" type="button" class="btn btn-sm" target="_blank" v-if="f.pdf"><i class="fa-regular fa-file-pdf"></i></a>
+                    </div>
+                  </td>
+                  <td>{{f.numero}}</td>
+                  <td v-if="this.estado != 'noAprobadas'">{{formatoFecha(f.aprobado_dian)}}</td>
+                  <td v-else>{{formatoFecha(f.creado)}}</td>
+                  <td>{{f.documento}}</td>
+                  <td>{{f.nombres}}</td>
+                  <td>{{f.apellidos}}</td>
+                  <td>{{f.telefono}}</td>
+                  <td>{{currencyMoney(f.total)}}</td>
+              </tr>
+          </!--tbody -->
+      </table>
+    </div>
+  </div>
+</div>
