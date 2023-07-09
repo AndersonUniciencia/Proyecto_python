@@ -1,8 +1,9 @@
-pymysql
+pymysql== 1.1.0
 python-multipart
-SQLAlchemy
-Jinja2
-uvicorn
-fastapi
+SQLAlchemy==2.0.18
+Jinja2==3.1.2
+uvicorn==0.22.0
+fastapi==0.73.0
 python-dateutil
 python-jose[cryptography]
+pydantic==1.9.0
